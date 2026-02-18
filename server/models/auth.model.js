@@ -28,10 +28,10 @@ const userSchema = new mongoose.Schema({
     }
 },{timestamps:true})
 
-userSchema.pre("save",async (next)=>{
+userSchema.pre("save",async function (){
 
     if(!this.isModified("password")){
-        return next()
+        return
     }
 
     const salt = await bcryptjs.genSalt(10)
@@ -40,7 +40,7 @@ userSchema.pre("save",async (next)=>{
 
     this.password = hashedPassword;
 
-    next()
+    
 })
 
 const user = mongoose.model("user",userSchema)

@@ -1,0 +1,10 @@
+<section class="min-h-screen p-2">
+    
+    @if (role() == "user") {
+        <app-user-layout>
+
+        </app-user-layout>
+    }@else if (role() == "admin") {
+        <app-admin-layout></app-admin-layout>
+    }
+</section>

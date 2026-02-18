@@ -4,9 +4,15 @@ const express = require("express")
 
 const app = express()
 
+const cookieParser = require("cookie-parser")
+
+const cors = require("cors")
+
 // DB connection
 
 const connectDB = require("./config/mongoDB.config")
+
+
 
 connectDB()
 
@@ -16,10 +22,17 @@ const requestLogger = require("./middleware/request.logger.middleware")
 
 
 
+app.use(cors({
+    origin:process.env.CLIENT_URL,
+    credentials:true,
+    methods:["GET","POST","PUT","DELETE"]
+}))
 
 app.use(express.json())
 
 app.use(express.urlencoded({extended:true}))
+
+app.use(cookieParser())
 
 app.use(requestLogger)
 
