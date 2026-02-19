@@ -48,8 +48,12 @@ app.get("/health",(req,res)=>{
 
 const authRoutes = require("./routes/auth.routes")
 
+const productRoutes = require("./routes/product.routes")
+
 app.use("/api/auth",authRoutes)
 // Error handler Middleware
+
+app.use("/api/products",productRoutes)
 
 const {errorHandlerLogger} = require("./middleware/errorHandler.middleware")
 
